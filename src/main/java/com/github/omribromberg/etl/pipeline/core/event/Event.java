@@ -10,7 +10,7 @@ public class Event {
     this.innerMap = new HashMap<>();
   }
 
-  public static Event of(Map<String, Object> map) {
+  public static Event event(Map<String, Object> map) {
     Event event = new Event();
     event.innerMap.putAll(map);
     return event;

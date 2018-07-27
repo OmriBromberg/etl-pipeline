@@ -9,7 +9,7 @@ public class Loads {
     throw new UnsupportedOperationException();
   }
 
-  public static CollectionLoad to(Collection<Event> referencedCollection) {
+  public static CollectionLoad loadTo(Collection<Event> referencedCollection) {
     return new CollectionLoad(referencedCollection);
   }
 }
