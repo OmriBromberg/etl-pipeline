@@ -10,11 +10,11 @@ public class Transforms {
     throw new UnsupportedOperationException();
   }
 
-  public static FilterTransform filter(Predicate<Event> predicate) {
-    return new FilterTransform(predicate);
+  public static TransformableFilter filter(Predicate<Event> predicate) {
+    return new TransformableFilter(predicate);
   }
 
-  public static MapTransform map(Function<Event, Event> function) {
-    return new MapTransform(function);
+  public static TransformableMap map(Function<Event, Event> function) {
+    return new TransformableMap(function);
   }
 }

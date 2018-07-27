@@ -9,7 +9,7 @@ public class Extracts {
     throw new UnsupportedOperationException();
   }
 
-  public static CollectionExtract extractFrom(Collection<Event> events) {
-    return new CollectionExtract(events);
+  public static ExtractableCollection extractFrom(Collection<Event> events) {
+    return new ExtractableCollection(events);
   }
 }

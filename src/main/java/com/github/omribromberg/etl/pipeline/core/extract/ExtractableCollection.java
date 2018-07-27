@@ -5,10 +5,10 @@ import com.github.omribromberg.etl.pipeline.core.event.Event;
 import java.util.Collection;
 import java.util.stream.Stream;
 
-class CollectionExtract implements Extractable {
+class ExtractableCollection implements Extractable {
   private final Collection<Event> events;
 
-  CollectionExtract(Collection<Event> events) {
+  ExtractableCollection(Collection<Event> events) {
     this.events = events;
   }
 

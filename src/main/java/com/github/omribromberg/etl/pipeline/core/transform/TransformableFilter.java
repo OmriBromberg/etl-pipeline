@@ -5,10 +5,10 @@ import com.github.omribromberg.etl.pipeline.core.event.Event;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-public class FilterTransform implements Transformable {
+public class TransformableFilter implements Transformable {
   private final Predicate<Event> predicate;
 
-  FilterTransform(Predicate<Event> predicate) {
+  TransformableFilter(Predicate<Event> predicate) {
     this.predicate = predicate;
   }
 

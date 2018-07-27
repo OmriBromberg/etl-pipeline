@@ -5,10 +5,10 @@ import com.github.omribromberg.etl.pipeline.core.event.Event;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-public class MapTransform implements Transformable {
+public class TransformableMap implements Transformable {
   private final Function<Event, Event> function;
 
-  MapTransform(Function<Event, Event> function) {
+  TransformableMap(Function<Event, Event> function) {
     this.function = function;
   }
 

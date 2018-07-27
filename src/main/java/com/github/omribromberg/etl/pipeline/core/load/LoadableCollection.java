@@ -6,10 +6,10 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class CollectionLoad implements Loadable {
+public class LoadableCollection implements Loadable {
   private final Collection<Event> referencedCollection;
 
-  CollectionLoad(Collection<Event> referencedCollection) {
+  LoadableCollection(Collection<Event> referencedCollection) {
     this.referencedCollection = referencedCollection;
   }
 
