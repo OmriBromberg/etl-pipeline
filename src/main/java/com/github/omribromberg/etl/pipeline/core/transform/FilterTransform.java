@@ -5,7 +5,7 @@ import com.github.omribromberg.etl.pipeline.core.event.Event;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-public class FilterTransform implements Transform {
+public class FilterTransform implements Transformable {
   private final Predicate<Event> predicate;
 
   FilterTransform(Predicate<Event> predicate) {
@@ -13,7 +13,7 @@ public class FilterTransform implements Transform {
   }
 
   @Override
-  public Stream<Event> apply(Stream<Event> events) {
+  public Stream<Event> transform(Stream<Event> events) {
     return events.filter(this.predicate);
   }
 }

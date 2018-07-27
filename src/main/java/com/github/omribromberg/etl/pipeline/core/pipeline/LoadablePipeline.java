@@ -1,10 +1,10 @@
 package com.github.omribromberg.etl.pipeline.core.pipeline;
 
-import com.github.omribromberg.etl.pipeline.core.load.Load;
-import com.github.omribromberg.etl.pipeline.core.transform.Transform;
+import com.github.omribromberg.etl.pipeline.core.load.Loadable;
+import com.github.omribromberg.etl.pipeline.core.transform.Transformable;
 
 public interface LoadablePipeline {
-  LoadablePipeline transform(Transform transform);
+  LoadablePipeline transform(Transformable transformable);
 
-  RunnablePipeline load(Load load);
+  RunnablePipeline load(Loadable loadable);
 }

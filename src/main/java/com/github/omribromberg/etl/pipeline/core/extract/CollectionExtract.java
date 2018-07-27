@@ -5,7 +5,7 @@ import com.github.omribromberg.etl.pipeline.core.event.Event;
 import java.util.Collection;
 import java.util.stream.Stream;
 
-class CollectionExtract implements Extract {
+class CollectionExtract implements Extractable {
   private final Collection<Event> events;
 
   CollectionExtract(Collection<Event> events) {
@@ -13,7 +13,7 @@ class CollectionExtract implements Extract {
   }
 
   @Override
-  public Stream<Event> get() {
+  public Stream<Event> extract() {
     return this.events.stream();
   }
 }

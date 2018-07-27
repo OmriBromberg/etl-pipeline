@@ -1,7 +1,7 @@
 package com.github.omribromberg.etl.pipeline.core.pipeline;
 
-import com.github.omribromberg.etl.pipeline.core.extract.Extract;
+import com.github.omribromberg.etl.pipeline.core.extract.Extractable;
 
 public interface ExtractablePipeline {
-  LoadablePipeline extract(Extract extract);
+  LoadablePipeline extract(Extractable extractable);
 }

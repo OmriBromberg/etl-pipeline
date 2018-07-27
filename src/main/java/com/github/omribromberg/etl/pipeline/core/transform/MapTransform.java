@@ -5,7 +5,7 @@ import com.github.omribromberg.etl.pipeline.core.event.Event;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-public class MapTransform implements Transform {
+public class MapTransform implements Transformable {
   private final Function<Event, Event> function;
 
   MapTransform(Function<Event, Event> function) {
@@ -13,7 +13,7 @@ public class MapTransform implements Transform {
   }
 
   @Override
-  public Stream<Event> apply(Stream<Event> events) {
+  public Stream<Event> transform(Stream<Event> events) {
     return events.map(this.function);
   }
 }

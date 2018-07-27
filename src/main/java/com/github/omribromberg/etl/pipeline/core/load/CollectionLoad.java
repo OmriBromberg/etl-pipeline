@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class CollectionLoad implements Load {
+public class CollectionLoad implements Loadable {
   private final Collection<Event> referencedCollection;
 
   CollectionLoad(Collection<Event> referencedCollection) {
@@ -14,7 +14,7 @@ public class CollectionLoad implements Load {
   }
 
   @Override
-  public void accept(Stream<Event> events) {
+  public void load(Stream<Event> events) {
     referencedCollection.addAll(events.collect(Collectors.toList()));
   }
 }

@@ -1,21 +1,21 @@
 package com.github.omribromberg.etl.pipeline.core.pipeline;
 
 import com.github.omribromberg.etl.pipeline.core.event.Event;
-import com.github.omribromberg.etl.pipeline.core.extract.Extract;
-import com.github.omribromberg.etl.pipeline.core.load.Load;
-import com.github.omribromberg.etl.pipeline.core.transform.Transform;
+import com.github.omribromberg.etl.pipeline.core.extract.Extractable;
+import com.github.omribromberg.etl.pipeline.core.load.Loadable;
+import com.github.omribromberg.etl.pipeline.core.transform.Transformable;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Stream;
 
 public class LinearPipeline implements ExtractablePipeline, LoadablePipeline, RunnablePipeline {
-  private Extract extract;
-  private Collection<Transform> transforms;
-  private Load load;
+  private Extractable extractable;
+  private Collection<Transformable> transformables;
+  private Loadable loadable;
 
   private LinearPipeline() {
-    this.transforms = new ArrayList<>();
+    this.transformables = new ArrayList<>();
   }
 
   public static ExtractablePipeline linearPipeline() {
@@ -24,32 +24,32 @@ public class LinearPipeline implements ExtractablePipeline, LoadablePipeline, Ru
 
   @Override
   public void run() {
-    this.extract.initialize();
-    this.transforms.forEach(Transform::initialize);
-    this.load.initialize();
+    this.extractable.initialize();
+    this.transformables.forEach(Transformable::initialize);
+    this.loadable.initialize();
 
-    Stream<Event> eventStream = this.extract.get();
-    for (Transform transform : this.transforms) {
-      eventStream = transform.apply(eventStream);
+    Stream<Event> eventStream = this.extractable.extract();
+    for (Transformable transformable : this.transformables) {
+      eventStream = transformable.transform(eventStream);
     }
-    this.load.accept(eventStream);
+    this.loadable.load(eventStream);
   }
 
   @Override
-  public LoadablePipeline extract(Extract extract) {
-    this.extract = extract;
+  public LoadablePipeline extract(Extractable extractable) {
+    this.extractable = extractable;
     return this;
   }
 
   @Override
-  public LoadablePipeline transform(Transform transform) {
-    this.transforms.add(transform);
+  public LoadablePipeline transform(Transformable transformable) {
+    this.transformables.add(transformable);
     return this;
   }
 
   @Override
-  public RunnablePipeline load(Load load) {
-    this.load = load;
+  public RunnablePipeline load(Loadable loadable) {
+    this.loadable = loadable;
     return this;
   }
 }
