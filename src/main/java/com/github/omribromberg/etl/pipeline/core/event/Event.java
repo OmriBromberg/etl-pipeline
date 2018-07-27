@@ -10,6 +10,12 @@ public class Event {
     this.innerMap = new HashMap<>();
   }
 
+  public static Event event(String key, Object value) {
+    Event event = new Event();
+    event.innerMap.put(key, value);
+    return event;
+  }
+
   public static Event event(Map<String, Object> map) {
     Event event = new Event();
     event.innerMap.putAll(map);
