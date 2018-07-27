@@ -2,9 +2,8 @@ package com.github.omribromberg.etl.pipeline.core.transform;
 
 import com.github.omribromberg.etl.pipeline.core.event.Event;
 
-import java.util.Collection;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class FilterTransform implements Transform {
   private final Predicate<Event> predicate;
@@ -14,7 +13,7 @@ public class FilterTransform implements Transform {
   }
 
   @Override
-  public Collection<Event> apply(Collection<Event> events) {
-    return events.stream().filter(this.predicate).collect(Collectors.toList());
+  public Stream<Event> apply(Stream<Event> events) {
+    return events.filter(this.predicate);
   }
 }

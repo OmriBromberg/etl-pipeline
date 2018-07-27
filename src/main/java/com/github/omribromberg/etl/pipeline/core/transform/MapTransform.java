@@ -2,9 +2,8 @@ package com.github.omribromberg.etl.pipeline.core.transform;
 
 import com.github.omribromberg.etl.pipeline.core.event.Event;
 
-import java.util.Collection;
 import java.util.function.Function;
-import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MapTransform implements Transform {
   private final Function<Event, Event> function;
@@ -14,7 +13,7 @@ public class MapTransform implements Transform {
   }
 
   @Override
-  public Collection<Event> apply(Collection<Event> events) {
-    return events.stream().map(this.function).collect(Collectors.toList());
+  public Stream<Event> apply(Stream<Event> events) {
+    return events.map(this.function);
   }
 }

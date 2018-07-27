@@ -8,7 +8,6 @@ import com.github.omribromberg.etl.pipeline.core.transform.Transform;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 
 public class LinearPipeline implements ExtractablePipeline, LoadablePipeline, RunnablePipeline {
   private Extract extract;
@@ -19,7 +18,7 @@ public class LinearPipeline implements ExtractablePipeline, LoadablePipeline, Ru
     this.transforms = new ArrayList<>();
   }
 
-  public static ExtractablePipeline create() {
+  public static ExtractablePipeline linearPipeline() {
     return new LinearPipeline();
   }
 
@@ -29,11 +28,11 @@ public class LinearPipeline implements ExtractablePipeline, LoadablePipeline, Ru
     this.transforms.forEach(Transform::initialize);
     this.load.initialize();
 
-    Stream<Collection<Event>> eventStream = StreamSupport.stream(extract.spliterator(), false);
+    Stream<Event> eventStream = this.extract.get();
     for (Transform transform : this.transforms) {
-      eventStream = eventStream.map(transform);
+      eventStream = transform.apply(eventStream);
     }
-    eventStream.forEach(this.load);
+    this.load.accept(eventStream);
   }
 
   @Override

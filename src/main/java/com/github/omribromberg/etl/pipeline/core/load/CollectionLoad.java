@@ -3,6 +3,8 @@ package com.github.omribromberg.etl.pipeline.core.load;
 import com.github.omribromberg.etl.pipeline.core.event.Event;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class CollectionLoad implements Load {
   private final Collection<Event> referencedCollection;
@@ -12,7 +14,7 @@ public class CollectionLoad implements Load {
   }
 
   @Override
-  public void accept(Collection<Event> events) {
-    referencedCollection.addAll(events);
+  public void accept(Stream<Event> events) {
+    referencedCollection.addAll(events.collect(Collectors.toList()));
   }
 }

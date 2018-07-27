@@ -3,8 +3,7 @@ package com.github.omribromberg.etl.pipeline.core.extract;
 import com.github.omribromberg.etl.pipeline.core.event.Event;
 
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
+import java.util.stream.Stream;
 
 class CollectionExtract implements Extract {
   private final Collection<Event> events;
@@ -14,7 +13,7 @@ class CollectionExtract implements Extract {
   }
 
   @Override
-  public Iterator<Collection<Event>> iterator() {
-    return Collections.singletonList(events).iterator();
+  public Stream<Event> get() {
+    return this.events.stream();
   }
 }
