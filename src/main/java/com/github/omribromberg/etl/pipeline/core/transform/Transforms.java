@@ -6,7 +6,9 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class Transforms {
-  private Transforms() {}
+  private Transforms() {
+    throw new UnsupportedOperationException();
+  }
 
   public static FilterTransform filter(Predicate<Event> predicate) {
     return new FilterTransform(predicate);

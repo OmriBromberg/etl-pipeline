@@ -5,7 +5,9 @@ import com.github.omribromberg.etl.pipeline.core.event.Event;
 import java.util.Collection;
 
 public class Loads {
-  private Loads() {}
+  private Loads() {
+    throw new UnsupportedOperationException();
+  }
 
   public static CollectionLoad to(Collection<Event> referencedCollection) {
     return new CollectionLoad(referencedCollection);
