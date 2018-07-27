@@ -10,13 +10,17 @@ import java.util.Collection;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
-public class LinearPipeline implements Pipeline {
+public class LinearPipeline implements ExtractablePipeline, LoadablePipeline, RunnablePipeline {
   private Extract extract;
   private Collection<Transform> transforms;
   private Load load;
 
-  public LinearPipeline() {
+  private LinearPipeline() {
     this.transforms = new ArrayList<>();
+  }
+
+  public static ExtractablePipeline create() {
+    return new LinearPipeline();
   }
 
   @Override
@@ -33,19 +37,19 @@ public class LinearPipeline implements Pipeline {
   }
 
   @Override
-  public Pipeline extract(Extract extract) {
+  public LoadablePipeline extract(Extract extract) {
     this.extract = extract;
     return this;
   }
 
   @Override
-  public Pipeline transform(Transform transform) {
+  public LoadablePipeline transform(Transform transform) {
     this.transforms.add(transform);
     return this;
   }
 
   @Override
-  public Pipeline load(Load load) {
+  public RunnablePipeline load(Load load) {
     this.load = load;
     return this;
   }
