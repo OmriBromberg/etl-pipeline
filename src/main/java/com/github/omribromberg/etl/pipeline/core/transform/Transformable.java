@@ -7,5 +7,5 @@ import java.util.stream.Stream;
 
 @FunctionalInterface
 public interface Transformable extends Initializable {
-  Stream<Event> transform(Stream<Event> events);
+  Stream<Event> transform(Stream<Event> events) throws Throwable;
 }

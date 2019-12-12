@@ -23,9 +23,11 @@ public class LinearPipeline implements ExtractablePipeline, LoadablePipeline, Ru
   }
 
   @Override
-  public void run() {
+  public void run() throws Throwable {
     this.extractable.initialize();
-    this.transformables.forEach(Transformable::initialize);
+    for (Transformable transformable : this.transformables) {
+      transformable.initialize();
+    }
     this.loadable.initialize();
 
     Stream<Event> eventStream = this.extractable.extract();

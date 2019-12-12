@@ -53,4 +53,8 @@ public class Event {
   public String toString() {
     return this.innerMap.toString();
   }
+
+  public Map<String, Object> getAsMap() {
+    return this.innerMap;
+  }
 }

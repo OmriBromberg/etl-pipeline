@@ -7,5 +7,5 @@ import java.util.stream.Stream;
 
 @FunctionalInterface
 public interface Loadable extends Initializable {
-  void load(Stream<Event> events);
+  void load(Stream<Event> events) throws Throwable;
 }

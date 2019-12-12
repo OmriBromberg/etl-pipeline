@@ -7,5 +7,5 @@ import java.util.stream.Stream;
 
 @FunctionalInterface
 public interface Extractable extends Initializable {
-  Stream<Event> extract();
+  Stream<Event> extract() throws Throwable;
 }
